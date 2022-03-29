@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(UserRequest userRequest, Integer id) {
-        User userToUpdate = userRepository.findById(id).orElseThrow();
+        User userToUpdate = getById(id);
         userToUpdate.setName(userRequest.getName());
         userToUpdate.setCpf(userRequest.getCpf());
         userToUpdate.setPassword(userRequest.getPassword());
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Integer id) {
-        var userToDelete = userRepository.findById(id).orElseThrow();
+        var userToDelete = getById(id);
         userRepository.delete(userToDelete);
     }
 }

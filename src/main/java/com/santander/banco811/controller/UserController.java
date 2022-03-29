@@ -17,8 +17,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public List<User> getAll(@RequestParam(required = false) String name) {
-        return userService.getAll(name);
+    public List<UserResponse> getAll(@RequestParam(required = false) String name) {
+        return UserResponse.toResponse(userService.getAll(name));
     }
 
     @PostMapping
@@ -27,13 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Integer id) {
-        return  userService.getById(id);
+    public UserResponse getById(@PathVariable Integer id) {
+        return new UserResponse(userService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Integer id, @RequestBody UserRequest userRequest){
-        return userService.update(userRequest, id);
+    public UserResponse update(@PathVariable Integer id, @RequestBody UserRequest userRequest){
+        return new UserResponse(userService.update(userRequest, id));
     }
 
     @DeleteMapping("/{id}")
