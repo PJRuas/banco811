@@ -26,13 +26,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonProperty("username")
+    @Column(name = "login")
+    private String login;
+
     @Column(name = "full_name", nullable = false)
     private String name;
 
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty("password")
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -46,12 +50,12 @@ public class User {
     private LocalDateTime updateDate;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Account> accounts;
 
-    public User(UserRequest userRequest) {
+    public User(UserRequest userRequest, String encryptedPassword) {
         this.cpf = userRequest.getCpf();
         this.name = userRequest.getName();
-        this.password = userRequest.getPassword();
+        this.password = encryptedPassword;
     }
 }
