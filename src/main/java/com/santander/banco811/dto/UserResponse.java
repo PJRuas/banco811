@@ -14,6 +14,7 @@ public class UserResponse {
     private String name;
     private LocalDateTime creationDate;
     private LocalDateTime updateDate;
+    private String login;
 
     public UserResponse(User user) {
         this.id = user.getId();
@@ -21,6 +22,7 @@ public class UserResponse {
         this.name = user.getName();
         this.creationDate = user.getCreationDate();
         this.updateDate = user.getUpdateDate();
+        this.login = user.getLogin();
     }
 
     public static List<UserResponse> toResponse(List<User> users){

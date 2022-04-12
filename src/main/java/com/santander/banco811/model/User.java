@@ -57,5 +57,6 @@ public class User {
         this.cpf = userRequest.getCpf();
         this.name = userRequest.getName();
         this.password = encryptedPassword;
+        this.login = userRequest.getLogin();
     }
 }

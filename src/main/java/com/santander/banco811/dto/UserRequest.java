@@ -10,4 +10,5 @@ public class UserRequest {
     private String cpf;
     private String name;
     private String password;
+    private String login;
 }

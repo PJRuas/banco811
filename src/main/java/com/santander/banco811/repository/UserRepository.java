@@ -19,8 +19,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User>, QuerydslPredicateExecutor<User> {
     Page<User> findByName(String name, Pageable pageable);
 
-    @Query("select new com.santander.banco811.dto.UserResponse(u.id, u.cpf, u.name, u.creationDate, u.updateDate) from User u " +
-            "where u.cpf = :cpf")
+//    @Query("select new com.santander.banco811.model.User(u.id, u.cpf, u.name, u.creationDate, u.updateDate) from User u " +
+//            "where u.cpf = :cpf")
     List<User> findByCpf(@Param("cpf") String cpf, Pageable pageable);
 
     Optional<User> findByLogin(String login);

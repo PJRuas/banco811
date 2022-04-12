@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private PageRequest generateDefaultPageable(Integer page, Integer size, int defaultPage, int defaultSize){
         page = page != null ? page : defaultPage;
         size = size != null ? size : defaultSize;
-        return PageRequest.of(page, size, Sort.Direction.ASC);
+        return PageRequest.of(page, size);
     }
 
     @Override

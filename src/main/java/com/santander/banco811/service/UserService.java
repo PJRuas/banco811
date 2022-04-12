@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface UserService {
     Page<User> getAll(String name, Integer page, Integer size);
     List<User> search(String search);

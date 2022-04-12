@@ -21,7 +21,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     List<Account> findByAccountValueGreaterThanEqual(BigDecimal value);
 
     List<Account> findByAccountValueBetween(BigDecimal initialValue, BigDecimal finalValue);
-    List<Account> findAccountValueIn(List<BigDecimal> values);
+    List<Account> findByAccountValueIn(List<BigDecimal> values);
 
     List<Account> findByAccountTypeAndAccountValueBetweenOrderByAccountValue(AccountType accountType, BigDecimal initialValue, BigDecimal finalValue);
 
@@ -38,15 +38,15 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
             @Param("accountValue") BigDecimal accountValue
     );
 
-    @Query("select * from Account a " +
-            "where (a.account_type = :accountType AND " +
-            "a.creation_date >= :creationDate) " +
-            "OR a.account_value = :accountValue")
-    List<Account> findByCreationDateAndAccountTypeOrAccountValue(
-            @Param("creationDate") LocalDateTime creationDate,
-            @Param("accountType") AccountType accountType,
-            @Param("accountValue") BigDecimal accountValue
-            );
+//    @Query("select a from Account a " +
+//            "where (a.account_type = :accountType AND " +
+//            "a.creation_date >= :creationDate) " +
+//            "OR a.account_value = :accountValue")
+//    List<Account> findByCreationDateAndAccountTypeOrAccountValue(
+//            @Param("creationDate") LocalDateTime creationDate,
+//            @Param("accountType") AccountType accountType,
+//            @Param("accountValue") BigDecimal accountValue
+//            );
 
     @Query("select a from Account a " + "where a.accountType = :accountType and a.user.name = :name")
     List<Account>findByAccountTypeAndUserName(@Param("accountType") AccountType accountType,
